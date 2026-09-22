@@ -34,15 +34,27 @@ const navItems = [
 	</head>
 	<body style="margin:0; background:#fff; color:#10243D;">
 		<header style="position:sticky;top:0;z-index:50;background:#10243D;border-bottom:1px solid rgba(255,255,255,.14)">
-			<div style="max-width:1320px;margin:0 auto;padding:14px 32px;min-height:84px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px">
-				<a href="/" style="display:flex;align-items:center;gap:16px;flex:none;text-decoration:none">
-					<img src={logo.src} alt="NCMI" style="display:block;height:52px;width:auto;flex:none" />
+			<div class="header-inner" style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px">
+				<a class="header-logo" href="/" style="display:flex;align-items:center;gap:16px;flex:none;text-decoration:none">
+					<img src={logo.src} alt="NCMI" style="display:block;width:auto;flex:none" />
 					<span style="width:1px;height:26px;background:rgba(255,255,255,.28)"></span>
 					<span style="font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.72)">Nederland</span>
 				</a>
-				<nav style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 2px;margin-left:auto;min-width:0">
+				<button
+					class="nav-toggle"
+					type="button"
+					aria-label="Menu"
+					aria-expanded="false"
+					aria-controls="site-nav"
+				>
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+				<nav id="site-nav" class="site-nav">
 					{navItems.map((item) => (
 						<a
+							class="nav-link"
 							href={item.href}
 							style="padding:10px 14px;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none"
 							onmouseover="this.style.color='#fff'"
@@ -52,8 +64,9 @@ const navItems = [
 						</a>
 					))}
 					<a
+						class="nav-cta"
 						href="/contact"
-						style="margin-left:14px;padding:13px 22px;border:1px solid rgba(255,255,255,.55);font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-decoration:none"
+						style="padding:13px 22px;border:1px solid rgba(255,255,255,.55);font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-decoration:none"
 						onmouseover="this.style.background='#fff';this.style.color='#10243D'"
 						onmouseout="this.style.background='transparent';this.style.color='#fff'"
 					>
@@ -72,5 +85,114 @@ const navItems = [
 				<p>&copy; {new Date().getFullYear()} NCMI Nederland. Alle rechten voorbehouden.</p>
 			</div>
 		</footer>
+
+		<style>
+			.header-inner {
+				padding: 14px 32px;
+				min-height: 84px;
+			}
+
+			.header-logo img {
+				height: 52px;
+			}
+
+			.site-nav {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 6px 2px;
+				margin-left: auto;
+				min-width: 0;
+			}
+
+			.nav-cta {
+				margin-left: 14px;
+			}
+
+			.nav-toggle {
+				display: none;
+				margin-left: auto;
+				flex-direction: column;
+				justify-content: center;
+				gap: 5px;
+				width: 44px;
+				height: 44px;
+				padding: 0;
+				background: transparent;
+				border: 1px solid rgba(255, 255, 255, 0.35);
+				cursor: pointer;
+			}
+
+			.nav-toggle span {
+				display: block;
+				width: 20px;
+				height: 2px;
+				margin: 0 auto;
+				background: #fff;
+				transition: transform 0.2s ease, opacity 0.2s ease;
+			}
+
+			.nav-toggle[aria-expanded='true'] span:nth-child(1) {
+				transform: translateY(7px) rotate(45deg);
+			}
+
+			.nav-toggle[aria-expanded='true'] span:nth-child(2) {
+				opacity: 0;
+			}
+
+			.nav-toggle[aria-expanded='true'] span:nth-child(3) {
+				transform: translateY(-7px) rotate(-45deg);
+			}
+
+			@media (max-width: 900px) {
+				.nav-toggle {
+					display: flex;
+				}
+
+				.header-inner {
+					padding-left: 20px;
+					padding-right: 20px;
+					min-height: 72px;
+				}
+
+				.header-logo img {
+					height: 36px;
+				}
+
+				.site-nav {
+					display: none;
+					width: 100%;
+					flex-direction: column;
+					align-items: stretch;
+					gap: 0;
+					margin: 8px 0 0;
+					border-top: 1px solid rgba(255, 255, 255, 0.14);
+				}
+
+				.site-nav.is-open {
+					display: flex;
+				}
+
+				.site-nav .nav-link {
+					padding: 16px 0 !important;
+					border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+				}
+
+				.site-nav .nav-cta {
+					margin: 20px 0 8px;
+					text-align: center;
+				}
+			}
+		</style>
+
+		<script>
+			const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+			const nav = document.querySelector<HTMLElement>('.site-nav');
+
+			toggle?.addEventListener('click', () => {
+				const isOpen = nav?.classList.toggle('is-open') ?? false;
+				toggle.setAttribute('aria-expanded', String(isOpen));
+			});
+		</script>
 	</body>
 </html>
