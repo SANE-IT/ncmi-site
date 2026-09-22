@@ -1,0 +1,51 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = 'Alive NCMI — samen kerken planten en leiders toerusten.' } = Astro.props;
+
+const navItems = [
+	{ href: '/', label: 'Home' },
+	{ href: '/over-ons', label: 'Over ons' },
+	{ href: '/resources', label: 'Resources' },
+	{ href: '/agenda', label: 'Agenda' },
+	{ href: '/contact', label: 'Contact' },
+];
+---
+
+<html lang="nl">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title} · Alive NCMI</title>
+	</head>
+	<body class="bg-white text-slate-900">
+		<header class="bg-[#10243D] text-white">
+			<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+				<a href="/" class="text-lg font-semibold tracking-wide">Alive <span class="text-[#E8A33D]">NCMI</span></a>
+				<nav class="hidden gap-6 text-sm font-medium md:flex">
+					{navItems.map((item) => (
+						<a href={item.href} class="hover:text-[#E8A33D] transition-colors">{item.label}</a>
+					))}
+				</nav>
+			</div>
+		</header>
+
+		<main>
+			<slot />
+		</main>
+
+		<footer class="bg-[#10243D] text-white/80">
+			<div class="mx-auto max-w-6xl px-6 py-10 text-sm">
+				<p>&copy; {new Date().getFullYear()} Alive NCMI. Alle rechten voorbehouden.</p>
+			</div>
+		</footer>
+	</body>
+</html>

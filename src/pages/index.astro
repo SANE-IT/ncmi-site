@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import equipPhoto from '../assets/photos/equip-utrecht.jpg';
+---
+
+<Layout title="Home">
+	<section class="relative">
+		<Image
+			src={equipPhoto}
+			alt="NCMI Europe Equip training in Utrecht"
+			class="h-[420px] w-full object-cover"
+			widths={[640, 1024, 1600]}
+			sizes="100vw"
+		/>
+		<div class="absolute inset-0 bg-[#10243D]/70"></div>
+		<div class="absolute inset-0 flex items-center">
+			<div class="mx-auto max-w-6xl px-6 text-white">
+				<h1 class="max-w-2xl text-4xl font-bold leading-tight md:text-5xl">
+					Kerken planten. Leiders toerusten.
+				</h1>
+				<p class="mt-4 max-w-xl text-lg text-white/90">
+					[Placeholder-tekst — te vervangen door definitieve copy] Alive NCMI ondersteunt pastors,
+					kerken en kerkplanters in Nederland met training, resources en gemeenschap.
+				</p>
+				<a
+					href="/resources"
+					class="mt-8 inline-block rounded bg-[#E8A33D] px-6 py-3 font-semibold text-[#10243D] hover:bg-[#f0b45c] transition-colors"
+				>
+					Bekijk resources
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<h2 class="text-2xl font-bold text-[#10243D]">Wat we doen</h2>
+		<p class="mt-3 max-w-3xl text-slate-600">
+			[Placeholder — vervang met echte NL-tekst] NCMI is een trans-lokaal team dat pastors en
+			kerken helpt bouwen, gelovigen toerust en meewerkt aan het planten van nieuwe kerken.
+		</p>
+		<div class="mt-10 grid gap-8 md:grid-cols-3">
+			<div class="rounded-lg border border-slate-200 p-6">
+				<h3 class="font-semibold text-[#10243D]">Resources</h3>
+				<p class="mt-2 text-sm text-slate-600">Boeken, video's en materiaal voor kerkplanters en leiders.</p>
+			</div>
+			<div class="rounded-lg border border-slate-200 p-6">
+				<h3 class="font-semibold text-[#10243D]">Agenda</h3>
+				<p class="mt-2 text-sm text-slate-600">Trainingen, Equips en GTT's — bekijk de eerstvolgende events.</p>
+			</div>
+			<div class="rounded-lg border border-slate-200 p-6">
+				<h3 class="font-semibold text-[#10243D]">Partnerschap</h3>
+				<p class="mt-2 text-sm text-slate-600">Samen kerken bouwen, in verbinding met het wereldwijde NCMI-netwerk.</p>
+			</div>
+		</div>
+	</section>
+</Layout>

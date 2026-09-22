@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Placeholder data — wordt in fase 1 vervangen door content uit Sanity CMS.
+const events = [
+	{ date: 'Voorbeelddatum', title: 'Equip Training Utrecht' },
+	{ date: 'Voorbeelddatum', title: 'GTT — Global Training Team' },
+];
+---
+
+<Layout title="Agenda">
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<h1 class="text-3xl font-bold text-[#10243D]">Agenda</h1>
+		<p class="mt-3 max-w-2xl text-slate-600">
+			Trainingen, Equips en andere events. Later koppelbaar aan ticketverkoop via het ledenportaal.
+		</p>
+		<ul class="mt-10 divide-y divide-slate-200">
+			{events.map((e) => (
+				<li class="flex items-center justify-between py-4">
+					<span class="font-semibold text-[#10243D]">{e.title}</span>
+					<span class="text-sm text-slate-500">{e.date}</span>
+				</li>
+			))}
+		</ul>
+	</section>
+</Layout>

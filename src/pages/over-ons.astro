@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import kinderwerkPhoto from '../assets/photos/kinderwerk.jpg';
+---
+
+<Layout title="Over ons">
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<h1 class="text-3xl font-bold text-[#10243D]">Over ons</h1>
+		<p class="mt-4 max-w-2xl text-slate-600">
+			[Placeholder — vervang met echte NL-tekst] NCMI is een trans-lokaal team met een apostolisch
+			hart, dat pastors en oudsten helpt hun lokale kerk te bouwen en gelovigen toe te rusten voor
+			het werk van het Koninkrijk.
+		</p>
+		<Image
+			src={kinderwerkPhoto}
+			alt="Kinderwerk bij Alive"
+			class="mt-10 h-72 w-full rounded-lg object-cover"
+			widths={[640, 1024]}
+			sizes="100vw"
+		/>
+	</section>
+</Layout>
