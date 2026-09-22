@@ -7,7 +7,7 @@ const pillars = [
 	{ title: 'Profetisch hart', description: 'Een team dat wil horen van God, daaruit visie vormt en doet wat Hij zegt. Visie verandert niet; strategie mag dat wel.' },
 ];
 
-const fundamentsOfWhatNcmiIsNot = [
+const fundaments = [
 	{ label: 'Fundament 1', title: 'De kerk gaat over Jezus en zijn Koninkrijk', description: 'Alles wat we doen brengt eer aan Jezus. De kerk is het enige dat Hij bouwt, en wij geloven dat de kerk Gods plan A is (Mattheüs 16:18; Efeze 3:10). Nieuwtestamentische kerken planten is het middel dat God koos om de wereld te bereiken.' },
 	{ label: 'Fundament 2', title: 'De Bijbel is het geïnspireerde Woord van God', description: 'Het is de enige aanvaardbare maatstaf voor leven, dienstwerk en gedrag in de kerk (2 Timotheüs 3:16). Die maatstaf passen we toe op alles wat we doen — ook op de manier waarop teamleden en partnerende pastors verantwoording aan elkaar afleggen.' },
 ];
@@ -34,118 +34,117 @@ const timeline = [
 	{ year: '2010', what: 'Eerste partnerkerken in Nederland.' },
 	{ year: '2026', what: 'Acht partnerkerken verspreid over Nederland.' },
 ];
+
+const eyebrow = 'font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:#71808F';
+const wrap = 'max-width:1160px;margin:0 auto;padding:88px 32px';
 ---
 
 <Layout title="Over ons">
-	<section class="mx-auto max-w-6xl px-6 py-16">
-		<p class="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">Over NCMI</p>
-		<h1 class="mt-3 text-3xl font-black text-[#10243D] md:text-4xl">Wie is NCMI?</h1>
-		<p class="mt-4 max-w-2xl text-slate-600">
-			NCMI is een translokaal team met een apostolisch-profetisch hart: een team van de gaven uit
-			Efeze 4:11 — apostel, profeet, evangelist, pastor en leraar — dat in en uit de plaatselijke
-			kerk de volken ingaat, zoals Paulus en Barnabas vanuit Antiochië. Geen rondtrekkend
-			spreekcircuit en geen bestuurslaag, maar mensen die pastors en oudsten helpen hun gemeente te
-			bouwen. In Nederland partneren acht gemeenten met dit team. Onze missie: Jezus kennen en Jezus
-			bekend maken.
-		</p>
-		<div class="mt-8 flex flex-wrap gap-4">
-			<a href="https://ncmieurope.net" target="_blank" rel="noopener" class="rounded border border-[#10243D] px-6 py-3 text-sm font-bold uppercase tracking-wide text-[#10243D] hover:bg-[#10243D] hover:text-white transition-colors">
-				NCMI Europa ↗
-			</a>
-			<a href="https://ncmi.net" target="_blank" rel="noopener" class="rounded border border-[#10243D] px-6 py-3 text-sm font-bold uppercase tracking-wide text-[#10243D] hover:bg-[#10243D] hover:text-white transition-colors">
-				NCMI Global ↗
-			</a>
+	<section style="background:#fff;border-bottom:1px solid #D8E0E8">
+		<div style="max-width:1160px;margin:0 auto;padding:86px 32px 74px">
+			<div style={eyebrow.replace('.24em', '.26em')}>Over NCMI</div>
+			<h1 style="margin:20px 0 0;font-weight:800;font-size:clamp(36px,5vw,78px);line-height:.94;letter-spacing:-.03em;text-transform:uppercase;max-width:20ch;color:#10243D">Wie is NCMI?</h1>
+			<p style="margin:28px 0 0;max-width:62ch;font-size:19.5px;line-height:1.62;color:#333330">
+				NCMI is een translokaal team met een apostolisch-profetisch hart: een team van de gaven uit
+				Efeze 4:11 — apostel, profeet, evangelist, pastor en leraar — dat in en uit de plaatselijke
+				kerk de volken ingaat, zoals Paulus en Barnabas vanuit Antiochië. Geen rondtrekkend
+				spreekcircuit en geen bestuurslaag, maar mensen die pastors en oudsten helpen hun gemeente te
+				bouwen. In Nederland partneren acht gemeenten met dit team. Onze missie: Jezus kennen en
+				Jezus bekend maken.
+			</p>
+			<div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:12px">
+				<a href="https://ncmieurope.net" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border:1px solid #10243D;color:#10243D;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;text-decoration:none">NCMI Europa &#8599;</a>
+				<a href="https://ncmi.net" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border:1px solid #10243D;color:#10243D;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;text-decoration:none">NCMI Global &#8599;</a>
+			</div>
 		</div>
 	</section>
 
-	<section class="border-t border-slate-100 bg-slate-50">
-		<div class="mx-auto max-w-6xl px-6 py-16">
-			<div class="grid gap-8 md:grid-cols-3">
-				{pillars.map((p) => (
-					<div>
-						<h2 class="font-black uppercase tracking-wide text-[#10243D]">{p.title}</h2>
-						<p class="mt-3 text-sm text-slate-600">{p.description}</p>
+	<section style="background:#F1F5F9;border-bottom:1px solid #D8E0E8">
+		<div style="max-width:1160px;margin:0 auto;padding:88px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:44px">
+			{pillars.map((p) => (
+				<div>
+					<div style="font-size:26px;font-weight:800;letter-spacing:-.015em;text-transform:uppercase;color:#10243D">{p.title}</div>
+					<p style="margin:14px 0 0;font-size:16.5px;line-height:1.68;color:#3C4A5A">{p.description}</p>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section style="background:#fff;border-bottom:1px solid #D8E0E8">
+		<div style="max-width:1160px;margin:0 auto;padding:88px 32px">
+			<div style={eyebrow}>Wat NCMI niet is</div>
+			<p style="margin:24px 0 0;max-width:34ch;font-weight:800;font-size:clamp(24px,3vw,40px);line-height:1.1;letter-spacing:-.02em;text-transform:uppercase;color:#10243D">Geen denominatie. Geen beweging. Geen organisatie.</p>
+			<p style="margin:24px 0 0;max-width:62ch;font-size:17.5px;line-height:1.7;color:#333330">
+				NCMI is simpelweg een naam voor een team met erkende gaven uit Efeze 4:11, dat partnert rond
+				dezelfde visie: op grassroots-niveau met plaatselijke kerken werken aan Gods opdracht om alle
+				volken tot discipelen te maken.
+			</p>
+			<p style="margin:16px 0 0;max-width:62ch;font-size:17.5px;line-height:1.7;color:#333330">
+				Kerkleiders partneren vrijwillig en via vriendschap. Er zijn geen documenten om te
+				ondertekenen, er is geen hoofdkantoor en niets maakt dit partnerschap formeel of juridisch
+				bindend.
+			</p>
+			<div style="margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:#D8E0E8;border:1px solid #D8E0E8">
+				{fundaments.map((f) => (
+					<div style="padding:32px;background:#F1F5F9">
+						<div style="font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#71808F">{f.label}</div>
+						<div style="margin-top:14px;font-size:22px;font-weight:800;letter-spacing:-.015em;text-transform:uppercase;color:#10243D">{f.title}</div>
+						<p style="margin:14px 0 0;font-size:16px;line-height:1.68;color:#3C4A5A">{f.description}</p>
 					</div>
 				))}
 			</div>
 		</div>
 	</section>
 
-	<section class="mx-auto max-w-6xl px-6 py-16">
-		<h2 class="text-2xl font-black text-[#10243D] md:text-3xl">Wat NCMI niet is</h2>
-		<p class="mt-2 text-lg font-semibold text-slate-500">Geen denominatie. Geen beweging. Geen organisatie.</p>
-		<p class="mt-4 max-w-2xl text-slate-600">
-			NCMI is simpelweg een naam voor een team met erkende gaven uit Efeze 4:11, dat partnert rond
-			dezelfde visie: op grassroots-niveau met plaatselijke kerken werken aan Gods opdracht om alle
-			volken tot discipelen te maken. Kerkleiders partneren vrijwillig en via vriendschap. Er zijn
-			geen documenten om te ondertekenen, er is geen hoofdkantoor en niets maakt dit partnerschap
-			formeel of juridisch bindend.
-		</p>
-		<div class="mt-10 grid gap-8 md:grid-cols-2">
-			{fundamentsOfWhatNcmiIsNot.map((f) => (
-				<div>
-					<p class="text-xs font-bold uppercase tracking-wide text-[#E8A33D]">{f.label}</p>
-					<h3 class="mt-2 font-bold text-[#10243D]">{f.title}</h3>
-					<p class="mt-2 text-sm text-slate-600">{f.description}</p>
-				</div>
-			))}
-		</div>
-	</section>
-
-	<section class="border-t border-slate-100 bg-slate-50">
-		<div class="mx-auto max-w-6xl px-6 py-16">
-			<h2 class="text-2xl font-black text-[#10243D] md:text-3xl">Het team in Nederland</h2>
-			<p class="mt-4 max-w-2xl text-slate-600">
+	<section style="background:#10243D">
+		<div style="max-width:1160px;margin:0 auto;padding:88px 32px">
+			<h2 style="margin:0;font-weight:800;font-size:clamp(28px,3.6vw,52px);line-height:1;letter-spacing:-.025em;text-transform:uppercase;color:#fff">Het team in Nederland</h2>
+			<p style="margin:20px 0 46px;max-width:62ch;font-size:17px;line-height:1.7;color:rgba(255,255,255,.72)">
 				Jezus is het enige hoofd van zijn kerk (Kolossenzen 1:18). Wel plaatst God mensen in dienende
 				rollen: de mannen en vrouwen op het team worden erkend in de gaven van Efeze 4 en zijn
 				allemaal verbonden aan een plaatselijke kerk die hen uitzendt.
 			</p>
-			<ul class="mt-10 grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+			<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:26px">
 				{team.map((member) => (
-					<li>
-						<div class="aspect-square rounded-lg bg-slate-200"></div>
-						<p class="mt-3 font-bold text-[#10243D]">{member.name}</p>
-						<p class="text-sm text-slate-500">{member.role}</p>
-					</li>
+					<div>
+						<span style="display:block;height:240px;overflow:hidden;background:rgba(255,255,255,.08)"></span>
+						<span style="display:block;margin-top:16px;font-size:12.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff">{member.name}</span>
+						<span style="display:block;margin-top:5px;font-size:13.5px;color:rgba(255,255,255,.6)">{member.role}</span>
+					</div>
 				))}
-			</ul>
+			</div>
 		</div>
 	</section>
 
-	<section class="mx-auto max-w-6xl px-6 py-16">
-		<p class="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">Partnerschap met NCMI</p>
-		<h2 class="mt-3 text-2xl font-black text-[#10243D] md:text-3xl">Zes fundamenten</h2>
-		<p class="mt-4 max-w-2xl text-slate-600">
-			Het is niet Gods ontwerp dat een kerk of een leider de grote opdracht alleen volbrengt. Zo ziet
-			partnerschap er bij ons uit.
-		</p>
-		<div class="mt-10 grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-			{foundations.map((f) => (
-				<div>
-					<h3 class="font-bold text-[#10243D]">{f.title}</h3>
-					<p class="mt-2 text-sm text-slate-600">{f.description}</p>
+	<section style="background:#F1F5F9;border-bottom:1px solid #D8E0E8">
+		<div style="max-width:1160px;margin:0 auto;padding:88px 32px">
+			<div style={eyebrow}>Partnerschap met NCMI</div>
+			<h2 style="margin:18px 0 0;font-weight:800;font-size:clamp(28px,3.6vw,50px);line-height:1;letter-spacing:-.025em;text-transform:uppercase;color:#10243D">Zes fundamenten</h2>
+			<p style="margin:20px 0 0;max-width:58ch;font-size:17.5px;line-height:1.68;color:#333330">
+				Het is niet Gods ontwerp dat een kerk of een leider de grote opdracht alleen volbrengt. Zo
+				ziet partnerschap er bij ons uit.
+			</p>
+			<div style="margin-top:44px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:#D8E0E8;border:1px solid #D8E0E8">
+				{foundations.map((f) => (
+					<div style="padding:30px;background:#fff">
+						<div style="font-size:19px;font-weight:800;letter-spacing:-.01em;text-transform:uppercase;color:#10243D">{f.title}</div>
+						<p style="margin:12px 0 0;font-size:16px;line-height:1.65;color:#3C4A5A">{f.description}</p>
+					</div>
+				))}
+			</div>
+			<a href="/contact" style="display:inline-flex;margin-top:38px;padding:17px 30px;background:#E8A33D;color:#10243D;font-size:12.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;text-decoration:none">Contact us</a>
+		</div>
+	</section>
+
+	<section style="background:#fff">
+		<div style="max-width:940px;margin:0 auto;padding:88px 32px">
+			<h2 style="margin:0 0 36px;font-weight:800;font-size:clamp(28px,3.4vw,48px);line-height:1;letter-spacing:-.025em;text-transform:uppercase;color:#10243D">Een korte geschiedenis</h2>
+			{timeline.map((t) => (
+				<div style="display:grid;grid-template-columns:120px 1fr;gap:28px;padding:24px 0;border-top:1px solid #D8E0E8">
+					<span style="font-size:26px;font-weight:800;letter-spacing:-.02em;color:#10243D">{t.year}</span>
+					<span style="font-size:17px;line-height:1.65;color:#333330">{t.what}</span>
 				</div>
 			))}
-		</div>
-		<a
-			href="/contact"
-			class="mt-10 inline-block rounded bg-[#10243D] px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:bg-[#16335a] transition-colors"
-		>
-			Contact us
-		</a>
-	</section>
-
-	<section class="border-t border-slate-100 bg-slate-50">
-		<div class="mx-auto max-w-6xl px-6 py-16">
-			<h2 class="text-2xl font-black text-[#10243D] md:text-3xl">Een korte geschiedenis</h2>
-			<ol class="mt-8 space-y-6 border-l-2 border-slate-200 pl-6">
-				{timeline.map((t) => (
-					<li>
-						<p class="text-sm font-bold uppercase tracking-wide text-[#E8A33D]">{t.year}</p>
-						<p class="mt-1 text-slate-600">{t.what}</p>
-					</li>
-				))}
-			</ol>
 		</div>
 	</section>
 </Layout>

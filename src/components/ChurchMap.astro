@@ -1,0 +1,70 @@
+---
+import 'leaflet/dist/leaflet.css';
+
+interface Church {
+	name: string;
+	city: string;
+	lat: number;
+	lng: number;
+}
+
+interface Props {
+	churches: Church[];
+	height?: string;
+}
+
+const { churches, height = '440px' } = Astro.props;
+const mapId = `church-map-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div id={mapId} style={`height:${height};border:1px solid #D8E0E8;background:#E3EBF2`} data-churches={JSON.stringify(churches)}></div>
+
+<script>
+	import L from 'leaflet';
+
+	function initMap(container: HTMLElement) {
+		const churches = JSON.parse(container.dataset.churches || '[]') as { name: string; city: string; lat: number; lng: number }[];
+
+		const map = L.map(container, { scrollWheelZoom: false }).setView([52.15, 5.4], 7);
+
+		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; OpenStreetMap contributors',
+			maxZoom: 18,
+		}).addTo(map);
+
+		const goldIcon = L.divIcon({
+			className: '',
+			html: '<span style="display:block;width:16px;height:16px;border-radius:50%;background:#E8A33D;border:2px solid #10243D;box-shadow:0 1px 3px rgba(0,0,0,.4)"></span>',
+			iconSize: [16, 16],
+			iconAnchor: [8, 8],
+		});
+
+		const markers: L.Marker[] = [];
+		for (const church of churches) {
+			const marker = L.marker([church.lat, church.lng], { icon: goldIcon })
+				.addTo(map)
+				.bindPopup(`<strong>${church.name}</strong><br>${church.city}`);
+			markers.push(marker);
+		}
+
+		if (markers.length > 0) {
+			const group = L.featureGroup(markers);
+			map.fitBounds(group.getBounds().pad(0.3));
+		}
+	}
+
+	function initAllMaps() {
+		document.querySelectorAll<HTMLElement>('[data-churches]').forEach((el) => {
+			if (!(el as any)._mapInitialized) {
+				(el as any)._mapInitialized = true;
+				initMap(el);
+			}
+		});
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initAllMaps);
+	} else {
+		initAllMaps();
+	}
+</script>

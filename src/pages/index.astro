@@ -5,6 +5,8 @@ import heroPhoto from '../assets/photos/hero-confetti.jpg';
 import identityImg from '../assets/photos/identity-series.jpg';
 import kinderwerkImg from '../assets/photos/kinderwerk.jpg';
 import booksImg from '../assets/photos/resources-books.jpg';
+import ChurchMap from '../components/ChurchMap.astro';
+import { churches } from '../data/churches';
 
 const stats = [
 	{ value: '8', label: 'Partnerkerken' },
@@ -78,9 +80,7 @@ const navy = '#10243D';
 				</p>
 				<a href="/kerken" style={`display:inline-flex;align-items:center;gap:12px;margin-top:32px;padding:17px 30px;background:${gold};color:${navy};font-size:12.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;text-decoration:none`}>Open de kaart</a>
 			</div>
-			<div style="height:440px;background:#E3EBF2;border:1px solid #D8E0E8;display:flex;align-items:center;justify-content:center;color:#71808F;font-size:14px">
-				[kaart met partnerkerken]
-			</div>
+			<ChurchMap churches={churches} height="440px" />
 		</div>
 	</section>
 

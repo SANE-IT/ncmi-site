@@ -1,65 +1,106 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import crowdPhoto from '../assets/photos/crowd-bw.jpg';
+import ChurchMap from '../components/ChurchMap.astro';
+import { churches } from '../data/churches';
 
-// Placeholder data — wordt in fase 1 vervangen door content uit Sanity CMS.
-const regions = [
-	{ name: 'Noord-Nederland', count: 1 },
-	{ name: 'Midden-Nederland', count: 3 },
-	{ name: 'Zuid-Nederland', count: 4 },
+const regionCounts = churches.reduce((acc: Record<string, number>, c) => {
+	acc[c.region] = (acc[c.region] || 0) + 1;
+	return acc;
+}, {});
+const regions = Object.entries(regionCounts).map(([name, count]) => ({ name, count }));
+
+const upcomingEvents = [
+	{ dayMonth: '26 sep', title: 'Regiodag Midden-Nederland', where: 'Utrecht' },
+	{ dayMonth: '14 okt', title: 'Equip Training Utrecht', where: 'Utrecht' },
 ];
+
+const eyebrow = 'font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:#71808F';
+const gold = '#E8A33D';
+const navy = '#10243D';
 ---
 
 <Layout title="Kerken">
-	<section class="mx-auto max-w-6xl px-6 py-16">
-		<p class="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">NCMI Nederland</p>
-		<h1 class="mt-3 text-3xl font-black text-[#10243D] md:text-4xl">
-			Eén visie, <span class="text-[#E8A33D]">acht</span> gemeenten
-		</h1>
-		<p class="mt-4 max-w-2xl text-slate-600">
-			Partneren is meer dan kennen: we werken samen. Het team gaat in en uit de plaatselijke kerk,
-			rust gelovigen toe en plant nieuwe gemeenten. Vind een kerk bij jou, kom naar een regiodag, of
-			gebruik wat de kerken delen.
-		</p>
-		<div class="mt-8 flex flex-wrap gap-4">
-			<a href="#regios" class="rounded bg-[#10243D] px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:bg-[#16335a] transition-colors">
-				Kerken in kaart
-			</a>
-			<a href="/resources" class="rounded border border-[#10243D] px-6 py-3 text-sm font-bold uppercase tracking-wide text-[#10243D] hover:bg-[#10243D] hover:text-white transition-colors">
-				Resources
-			</a>
+	<!-- Hero -->
+	<section style="background:#fff;border-bottom:1px solid #D8E0E8">
+		<div style="max-width:1320px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr))">
+			<div style="padding:96px 56px 96px 0;display:flex;flex-direction:column;justify-content:center">
+				<div style={eyebrow}>NCMI Nederland</div>
+				<h1 style="margin:24px 0 0;font-weight:800;font-size:clamp(38px,5.2vw,80px);line-height:.94;letter-spacing:-.025em;text-transform:uppercase;color:#10243D">Eén visie,<br />acht<br />gemeenten</h1>
+				<p style="margin:26px 0 0;max-width:46ch;font-size:19px;line-height:1.62;color:#3C4A5A">
+					Partneren is meer dan kennen: we werken samen. Het team gaat in en uit de plaatselijke
+					kerk, rust gelovigen toe en plant nieuwe gemeenten. Vind een kerk bij jou, kom naar een
+					regiodag, of gebruik wat de kerken delen.
+				</p>
+				<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:36px">
+					<a href="#regios" style={`display:inline-flex;align-items:center;padding:17px 30px;background:${gold};color:${navy};font-size:12.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;text-decoration:none`}>Kerken in kaart</a>
+					<a href="/resources" style="display:inline-flex;align-items:center;padding:17px 30px;border:1px solid #10243D;color:#10243D;font-size:12.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;text-decoration:none">Resources</a>
+				</div>
+			</div>
+			<div style="min-height:540px;position:relative">
+				<Image src={crowdPhoto} alt="" style="width:100%;height:100%;object-fit:cover;display:block;filter:sepia(.5) saturate(1.6) hue-rotate(175deg) contrast(1.03)" widths={[640, 1024]} sizes="50vw" />
+			</div>
 		</div>
 	</section>
 
-	<section id="regios" class="border-t border-slate-100 bg-slate-50">
-		<div class="mx-auto max-w-6xl px-6 py-16">
-			<h2 class="text-2xl font-black text-[#10243D] md:text-3xl">Van Coevorden tot Eindhoven</h2>
-			<p class="mt-3 max-w-2xl text-slate-600">
-				Klik een regio voor de gemeenten die daar met het team partneren.
-			</p>
-			<ul class="mt-8 grid gap-4 sm:grid-cols-3">
-				{regions.map((r) => (
-					<li class="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-6 py-4">
-						<span class="font-bold text-[#10243D]">{r.name}</span>
-						<span class="rounded-full bg-[#10243D]/5 px-3 py-1 text-sm font-bold text-[#10243D]">{r.count}</span>
-					</li>
+	<!-- Map + regions -->
+	<section id="regios" style="background:#F1F5F9;border-bottom:1px solid #D8E0E8">
+		<div style="max-width:1320px;margin:0 auto;padding:76px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:52px;align-items:start">
+			<ChurchMap churches={churches} height="470px" />
+			<div>
+				<h2 style="margin:0;font-weight:800;font-size:clamp(28px,3.4vw,48px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:#10243D">Van Coevorden tot Eindhoven</h2>
+				<p style="margin:18px 0 32px;font-size:17px;line-height:1.65;color:#3C4A5A">Klik een regio voor de gemeenten die daar met het team partneren.</p>
+				<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:#D8E0E8;border:1px solid #D8E0E8">
+					{regions.map((r) => (
+						<a href="/kerken" style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:15px 16px;background:#fff;color:#10243D;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;text-decoration:none">
+							<span>{r.name}</span><span style="opacity:.55">{r.count}</span>
+						</a>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Agenda + resources sidebar -->
+	<section style="background:#fff">
+		<div style="max-width:1320px;margin:0 auto;padding:88px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:60px">
+			<div>
+				<h2 style="margin:0;font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:#10243D">Agenda</h2>
+				{upcomingEvents.map((ev) => (
+					<a href="/agenda" style="display:flex;gap:22px;align-items:baseline;padding:24px 0;border-bottom:1px solid #D8E0E8;color:#10243D;text-decoration:none">
+						<span style="font-size:11.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#71808F;min-width:78px">{ev.dayMonth}</span>
+						<span>
+							<span style="display:block;font-size:20px;font-weight:700">{ev.title}</span>
+							<span style="display:block;margin-top:6px;font-size:14.5px;color:#71808F">{ev.where}</span>
+						</span>
+					</a>
 				))}
-			</ul>
+				<a href="/agenda" style="display:inline-block;margin-top:28px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#10243D;text-decoration:none">Alle events &rarr;</a>
+			</div>
+			<div>
+				<h2 style="margin:0;font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:#10243D">Nieuw in de bibliotheek</h2>
+				<a href="/resources" style="display:grid;grid-template-columns:104px 1fr;gap:20px;align-items:center;padding:22px 0;border-bottom:1px solid #D8E0E8;color:#10243D;text-decoration:none">
+					<span style="height:72px;overflow:hidden;display:block;background:#E3EBF2"></span>
+					<span>
+						<span style="display:block;font-size:10.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#71808F">Prekenserie</span>
+						<span style="display:block;margin-top:6px;font-size:18px;font-weight:700">Aan tafel</span>
+					</span>
+				</a>
+				<a href="/resources" style="display:inline-block;margin-top:28px;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#10243D;text-decoration:none">Naar de bibliotheek &rarr;</a>
+			</div>
 		</div>
 	</section>
 
-	<section class="bg-[#10243D]">
-		<div class="mx-auto max-w-6xl px-6 py-16 text-center text-white">
-			<h2 class="text-2xl font-black md:text-3xl">Partneren met het NCMI-team?</h2>
-			<p class="mx-auto mt-4 max-w-xl text-white/80">
+	<!-- CTA -->
+	<section style="background:#10243D">
+		<div style="max-width:1320px;margin:0 auto;padding:88px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:44px;align-items:center">
+			<h2 style="margin:0;font-weight:800;font-size:clamp(28px,3.6vw,50px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;color:#fff">Partneren met het NCMI-team?</h2>
+			<p style="margin:0;font-size:17.5px;line-height:1.65;color:rgba(255,255,255,.78)">
 				Partnerschap is Gods idee, niet het onze. De oudsten blijven de hoogste leiding in de
 				gemeente; het team geeft input, rust toe en gaat mee het onbekende in.
 			</p>
-			<a
-				href="/contact"
-				class="mt-8 inline-block rounded bg-[#E8A33D] px-6 py-3 text-sm font-bold uppercase tracking-wide text-[#10243D] hover:bg-[#f0b45c] transition-colors"
-			>
-				Connect
-			</a>
+			<a href="/contact" style={`justify-self:start;padding:17px 30px;background:${gold};color:${navy};font-size:12.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;text-decoration:none`}>Connect</a>
 		</div>
 	</section>
 </Layout>
