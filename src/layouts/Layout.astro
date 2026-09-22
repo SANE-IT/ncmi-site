@@ -32,21 +32,32 @@ const navItems = [
 		/>
 		<title>{title} · NCMI Nederland</title>
 	</head>
-	<body class="bg-white text-slate-900">
-		<header class="bg-[#10243D] text-white">
-			<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-				<a href="/" class="flex items-center gap-4">
-					<img src={logo.src} alt="NCMI" class="h-8 w-auto" />
-					<span class="h-6 w-px bg-white/28"></span>
-					<span class="text-xs font-bold uppercase tracking-[0.26em] text-white/72">Nederland</span>
+	<body style="margin:0; background:#fff; color:#10243D;">
+		<header style="position:sticky;top:0;z-index:50;background:#10243D;border-bottom:1px solid rgba(255,255,255,.14)">
+			<div style="max-width:1320px;margin:0 auto;padding:14px 32px;min-height:84px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px">
+				<a href="/" style="display:flex;align-items:center;gap:16px;flex:none;text-decoration:none">
+					<span style="display:block;position:relative;width:118px;height:52px;overflow:hidden;flex:none">
+						<img src={logo.src} alt="NCMI" style="position:absolute;width:152px;height:152px;left:-16px;top:-38px" />
+					</span>
+					<span style="width:1px;height:26px;background:rgba(255,255,255,.28)"></span>
+					<span style="font-size:12px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.72)">Nederland</span>
 				</a>
-				<nav class="hidden items-center gap-8 text-sm font-bold uppercase tracking-wide md:flex">
+				<nav style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 2px;margin-left:auto;min-width:0">
 					{navItems.map((item) => (
-						<a href={item.href} class="hover:text-[#E8A33D] transition-colors">{item.label}</a>
+						<a
+							href={item.href}
+							style="padding:10px 14px;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none"
+							onmouseover="this.style.color='#fff'"
+							onmouseout="this.style.color='rgba(255,255,255,.72)'"
+						>
+							{item.label.toUpperCase()}
+						</a>
 					))}
 					<a
 						href="/contact"
-						class="rounded border border-white/40 px-4 py-2 text-xs hover:border-[#E8A33D] hover:text-[#E8A33D] transition-colors"
+						style="margin-left:14px;padding:13px 22px;border:1px solid rgba(255,255,255,.55);font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;text-decoration:none"
+						onmouseover="this.style.background='#fff';this.style.color='#10243D'"
+						onmouseout="this.style.background='transparent';this.style.color='#fff'"
 					>
 						Connect
 					</a>
@@ -58,8 +69,8 @@ const navItems = [
 			<slot />
 		</main>
 
-		<footer class="bg-[#10243D] text-white/60">
-			<div class="mx-auto max-w-6xl px-6 py-10 text-sm">
+		<footer style="background:#10243D;color:rgba(255,255,255,.6)">
+			<div style="max-width:1320px;margin:0 auto;padding:40px 32px;font-size:13px">
 				<p>&copy; {new Date().getFullYear()} NCMI Nederland. Alle rechten voorbehouden.</p>
 			</div>
 		</footer>
