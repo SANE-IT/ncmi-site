@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import equipPhoto from '../assets/photos/equip-utrecht.jpg';
+import heroPhoto from '../assets/photos/hero-confetti.jpg';
+import crowdPhoto from '../assets/photos/crowd-bw.jpg';
 
 const stats = [
 	{ value: '8', label: 'Partnerkerken' },
@@ -9,33 +10,52 @@ const stats = [
 	{ value: '100+', label: 'Landen partneren wereldwijd' },
 	{ value: '1983', label: 'Sinds' },
 ];
+
+// Placeholder data — wordt in fase 1 vervangen door content uit Sanity CMS.
+const upcomingEvents = [
+	{ day: '26', month: 'sep', year: '2026', kind: 'Regiodag', title: 'Regiodag Midden-Nederland', where: 'Utrecht', time: '10:00' },
+	{ day: '14', month: 'okt', year: '2026', kind: 'Equip', title: 'Equip Training Utrecht', where: 'Utrecht', time: '19:00' },
+];
+
+const resourceCategories = [
+	{ title: 'Prekenseries', meta: '34 series met werkbladen', description: 'Doorlopende studies uit Handelingen, Efeze en Filippenzen — Christus centraal, met vragen voor kleine groepen.' },
+	{ title: 'Kinderwerk', meta: 'Lesmateriaal 4–12 jaar', description: 'Complete lesblokken, werkbladen en liedjes, klaar om af te drukken.' },
+	{ title: 'Cursussen', meta: 'Toerusting & trainingen', description: 'Van Fundamenten tot het aanstellen van oudsten — modulair, in elke gemeente te geven.' },
+	{ title: 'Video', meta: 'Equip-opnames', description: 'Sessies van de regiodagen en Equips, met ondertiteling.' },
+];
 ---
 
 <Layout title="Home">
-	<section class="relative">
+	<section class="relative flex min-h-[85vh] items-center overflow-hidden bg-[#10243D]">
 		<Image
-			src={equipPhoto}
-			alt="NCMI Europe Equip training in Utrecht"
-			class="h-[560px] w-full object-cover"
+			src={heroPhoto}
+			alt="NCMI Equip Utrecht"
+			class="absolute inset-0 h-full w-full object-cover object-[center_38%]"
 			widths={[640, 1024, 1600]}
 			sizes="100vw"
+			loading="eager"
+			fetchpriority="high"
 		/>
-		<div class="absolute inset-0 bg-gradient-to-r from-[#10243D]/95 via-[#10243D]/80 to-[#10243D]/40"></div>
-		<div class="absolute inset-0 flex items-center">
+		<div
+			class="absolute inset-0"
+			style="background:linear-gradient(90deg,rgba(16,36,61,.93) 0%,rgba(16,36,61,.72) 52%,rgba(16,36,61,.3) 100%)"
+		></div>
+		<div class="relative w-full">
 			<div class="mx-auto w-full max-w-6xl px-6 text-white">
 				<p class="text-xs font-bold uppercase tracking-[0.25em] text-[#E8A33D]">
-					Trans-lokaal team &middot; Apostolisch-profetisch hart
+					Translokaal team &middot; apostolisch-profetisch hart
 				</p>
 				<h1 class="mt-4 max-w-2xl text-4xl font-black uppercase leading-[1.05] md:text-6xl">
 					Jezus kennen en Hem bekend maken
 				</h1>
 				<p class="mt-6 max-w-xl text-lg text-white/85">
-					[Placeholder-tekst] Dát is waarom we bestaan. NCMI Nederland is geen organisatie en geen
-					agenda vol events, maar een team van gaven dat naast plaatselijke kerken gaat staan.
+					Dát is waarom we bestaan. NCMI Nederland is geen organisatie en geen agenda vol events,
+					maar een team van gaven dat naast plaatselijke kerken gaat staan — om gelovigen toe te
+					rusten en kerken te planten. Strategieën veranderen; deze visie niet.
 				</p>
 				<div class="mt-8 flex flex-wrap gap-4">
 					<a
-						href="/over-ons"
+						href="/kerken"
 						class="rounded bg-[#E8A33D] px-6 py-3 text-sm font-bold uppercase tracking-wide text-[#10243D] hover:bg-[#f0b45c] transition-colors"
 					>
 						Vind een kerk
@@ -63,25 +83,139 @@ const stats = [
 	</section>
 
 	<section class="mx-auto max-w-6xl px-6 py-16">
-		<p class="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">Wat we doen</p>
-		<h2 class="mt-3 text-3xl font-black text-[#10243D]">Samen kerken bouwen</h2>
-		<p class="mt-4 max-w-3xl text-slate-600">
-			[Placeholder — vervang met echte NL-tekst] NCMI is een trans-lokaal team dat pastors en
-			kerken helpt bouwen, gelovigen toerust en meewerkt aan het planten van nieuwe kerken.
+		<div class="grid gap-10 md:grid-cols-2 md:items-center">
+			<div>
+				<p class="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">De kaart</p>
+				<h2 class="mt-3 text-2xl font-black text-[#10243D] md:text-3xl">Wie partnert met het team?</h2>
+				<p class="mt-4 max-w-md text-slate-600">
+					Partnerschap is plaatselijk: we kunnen je niet wereldwijd uitnodigen als je ons niet
+					lokaal uitnodigt. Dit zijn de gemeenten die het team in huis halen — zoek op stad, bekijk
+					samenkomsttijden en neem contact op met de oudsten.
+				</p>
+				<a href="/kerken" class="mt-6 inline-block text-sm font-bold uppercase tracking-wide text-[#10243D] hover:text-[#E8A33D]">
+					Open de kaart →
+				</a>
+			</div>
+			<div class="flex h-64 items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400">
+				[kaart met partnerkerken]
+			</div>
+		</div>
+	</section>
+
+	<section class="border-t border-slate-100 bg-slate-50">
+		<div class="mx-auto max-w-6xl px-6 py-16">
+			<div class="flex items-baseline justify-between">
+				<h2 class="text-2xl font-black text-[#10243D] md:text-3xl">Wat er aankomt</h2>
+				<a href="/agenda" class="text-sm font-bold uppercase tracking-wide text-[#10243D] hover:text-[#E8A33D]">
+					Volledige agenda →
+				</a>
+			</div>
+			<ul class="mt-8 divide-y divide-slate-200">
+				{upcomingEvents.map((ev) => (
+					<li class="flex items-center justify-between gap-6 py-5">
+						<div class="flex items-center gap-6">
+							<div class="text-center">
+								<p class="text-2xl font-black text-[#10243D]">{ev.day}</p>
+								<p class="text-xs font-bold uppercase tracking-wide text-slate-400">{ev.month} {ev.year}</p>
+							</div>
+							<div>
+								<p class="text-xs font-bold uppercase tracking-wide text-[#E8A33D]">{ev.kind}</p>
+								<h3 class="font-bold text-[#10243D]">{ev.title}</h3>
+								<p class="text-sm text-slate-500">{ev.where} &middot; {ev.time}</p>
+							</div>
+						</div>
+						<span class="text-slate-300">→</span>
+					</li>
+				))}
+			</ul>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<p class="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">Resources</p>
+		<div class="mt-3 flex items-baseline justify-between">
+			<h2 class="text-2xl font-black text-[#10243D] md:text-3xl">Gedeeld door de kerken, voor de kerken</h2>
+			<a href="/resources" class="hidden text-sm font-bold uppercase tracking-wide text-[#10243D] hover:text-[#E8A33D] md:inline">
+				Bibliotheek →
+			</a>
+		</div>
+		<div class="mt-8 grid gap-6 md:grid-cols-4">
+			{resourceCategories.map((r) => (
+				<div class="rounded-lg border border-slate-200 p-6">
+					<h3 class="font-bold text-[#10243D]">{r.title}</h3>
+					<p class="mt-1 text-xs font-bold uppercase tracking-wide text-[#E8A33D]">{r.meta}</p>
+					<p class="mt-3 text-sm text-slate-600">{r.description}</p>
+				</div>
+			))}
+		</div>
+		<a href="/resources" class="mt-6 inline-block text-sm font-bold uppercase tracking-wide text-[#10243D] hover:text-[#E8A33D] md:hidden">
+			Bibliotheek →
+		</a>
+	</section>
+
+	<section class="relative">
+		<Image
+			src={crowdPhoto}
+			alt="NCMI samenkomst"
+			class="h-[420px] w-full object-cover grayscale"
+			widths={[640, 1024, 1600]}
+			sizes="100vw"
+		/>
+		<div class="absolute inset-0 bg-[#10243D]/75"></div>
+		<div class="absolute inset-0 flex items-center justify-center px-6">
+			<blockquote class="max-w-2xl text-center">
+				<p class="text-xl font-medium italic text-white md:text-2xl">
+					"We willen je kerk niet. We willen een echt partnerschap, waarin we samen dingen
+					doorwerken — de oudsten leiden, het team geeft input."
+				</p>
+				<footer class="mt-6">
+					<p class="font-bold text-white">Martijn de Wit</p>
+					<p class="text-sm text-white/70">NCMI-team Nederland</p>
+				</footer>
+			</blockquote>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<p class="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">Deel van een groter geheel</p>
+		<h2 class="mt-3 text-2xl font-black text-[#10243D] md:text-3xl">NCMI in Europa en wereldwijd</h2>
+		<p class="mt-4 max-w-2xl text-slate-600">
+			We dienen iets dat groter is dan wijzelf. Hetzelfde team partnert met kerken in heel Europa en
+			in meer dan honderd landen — één visie, verschillende strategieën.
 		</p>
-		<div class="mt-10 grid gap-8 md:grid-cols-3">
-			<div class="rounded-lg border border-slate-200 p-6">
-				<h3 class="font-bold uppercase tracking-wide text-[#10243D]">Resources</h3>
-				<p class="mt-2 text-sm text-slate-600">Boeken, video's en materiaal voor kerkplanters en leiders.</p>
-			</div>
-			<div class="rounded-lg border border-slate-200 p-6">
-				<h3 class="font-bold uppercase tracking-wide text-[#10243D]">Agenda</h3>
-				<p class="mt-2 text-sm text-slate-600">Trainingen, Equips en GTT's — bekijk de eerstvolgende events.</p>
-			</div>
-			<div class="rounded-lg border border-slate-200 p-6">
-				<h3 class="font-bold uppercase tracking-wide text-[#10243D]">Partnerschap</h3>
-				<p class="mt-2 text-sm text-slate-600">Samen kerken bouwen, in verbinding met het wereldwijde NCMI-netwerk.</p>
-			</div>
+		<div class="mt-8 grid gap-6 md:grid-cols-2">
+			<a href="https://ncmieurope.net" target="_blank" rel="noopener" class="rounded-lg border border-slate-200 p-6 hover:border-[#10243D] transition-colors">
+				<div class="flex items-center justify-between">
+					<h3 class="font-bold text-[#10243D]">Europa</h3>
+					<span class="text-[#E8A33D]">↗</span>
+				</div>
+				<p class="mt-1 text-xs font-bold uppercase tracking-wide text-slate-400">ncmieurope.net</p>
+				<p class="mt-3 text-sm text-slate-600">Pionieren, toerusting en kerkplanting van het team in Europa.</p>
+			</a>
+			<a href="https://ncmi.net" target="_blank" rel="noopener" class="rounded-lg border border-slate-200 p-6 hover:border-[#10243D] transition-colors">
+				<div class="flex items-center justify-between">
+					<h3 class="font-bold text-[#10243D]">Wereldwijd</h3>
+					<span class="text-[#E8A33D]">↗</span>
+				</div>
+				<p class="mt-1 text-xs font-bold uppercase tracking-wide text-slate-400">ncmi.net</p>
+				<p class="mt-3 text-sm text-slate-600">Het globale team: regio's, podcast, boeken, muziek, E2M College en Global Equip.</p>
+			</a>
+		</div>
+	</section>
+
+	<section class="bg-[#10243D]">
+		<div class="mx-auto max-w-6xl px-6 py-16 text-center text-white">
+			<h2 class="text-2xl font-black uppercase md:text-3xl">Doe je dit alleen?</h2>
+			<p class="mx-auto mt-4 max-w-xl text-white/80">
+				Dat hoeft niet. Als God je geroepen heeft een kerk te leiden, gaat het team graag naast je
+				staan — pioniers, geen kolonisten.
+			</p>
+			<a
+				href="/contact"
+				class="mt-8 inline-block rounded bg-[#E8A33D] px-6 py-3 text-sm font-bold uppercase tracking-wide text-[#10243D] hover:bg-[#f0b45c] transition-colors"
+			>
+				Connect with us
+			</a>
 		</div>
 	</section>
 </Layout>

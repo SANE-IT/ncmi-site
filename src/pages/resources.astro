@@ -1,11 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import identityImg from '../assets/photos/identity-series.jpg';
+import kinderwerkImg from '../assets/photos/kinderwerk.jpg';
+import booksImg from '../assets/photos/resources-books.jpg';
+import equipImg from '../assets/photos/equip-utrecht.jpg';
 
 // Placeholder data — wordt in fase 1 vervangen door content uit Sanity CMS.
 const resources = [
-	{ category: 'Prekenserie', meta: '6 delen', title: 'Aan tafel', description: "Serie over gastvrijheid, genade en de plek aan Jezus' tafel — met vragen voor kleine groepen.", sharedBy: 'Life Church Nijkerk' },
-	{ category: 'Kinderwerk', meta: '8 lessen', title: 'Helden van het geloof (6–9 jr)', description: 'Lesblok met verhaalplaten, werkbladen en knutselideeën.', sharedBy: 'WegwijzerKidz' },
-	{ category: 'Cursus', meta: '10 avonden', title: 'Alpha-cursus — draaiboek', description: 'Praktisch draaiboek om Alpha in je eigen gemeente te draaien.', sharedBy: 'De Wegwijzer Hardenberg' },
+	{ image: identityImg, category: 'Prekenserie', meta: '6 delen', title: 'Aan tafel', description: "Serie over gastvrijheid, genade en de plek aan Jezus' tafel — met vragen voor kleine groepen.", sharedBy: 'Life Church Nijkerk' },
+	{ image: kinderwerkImg, category: 'Kinderwerk', meta: '8 lessen', title: 'Helden van het geloof (6–9 jr)', description: 'Lesblok met verhaalplaten, werkbladen en knutselideeën.', sharedBy: 'WegwijzerKidz' },
+	{ image: booksImg, category: 'Cursus', meta: '10 avonden', title: 'Alpha-cursus — draaiboek', description: 'Praktisch draaiboek om Alpha in je eigen gemeente te draaien.', sharedBy: 'De Wegwijzer Hardenberg' },
+	{ image: equipImg, category: 'Video', meta: "5 video's", title: 'Equip Nederland — alle sessies', description: 'Opnames van Nederlandse en Engelse sessies van de laatste Equip.', sharedBy: 'NCMI Nederland' },
+	{ image: identityImg, category: 'Prekenserie', meta: '9 delen', title: 'Jezus centraal', description: 'Doorlopende serie over wie Jezus is en wat dat betekent voor de stad.', sharedBy: 'Alive, De Bilt' },
+	{ image: booksImg, category: 'Cursus', meta: '4 modules', title: 'Oudsten toerusten', description: 'Voor teams die leiders begeleiden en aanstellen.', sharedBy: 'NCMI Nederland' },
 ];
 ---
 
@@ -13,7 +21,7 @@ const resources = [
 	<section class="bg-[#10243D] text-white">
 		<div class="mx-auto max-w-6xl px-6 py-14">
 			<p class="text-xs font-bold uppercase tracking-[0.25em] text-[#E8A33D]">Resources</p>
-			<h1 class="mt-3 text-3xl font-black uppercase md:text-4xl">Materiaal om te delen en te groeien</h1>
+			<h1 class="mt-3 text-3xl font-black uppercase md:text-4xl">Gedeeld door de kerken, voor de kerken</h1>
 			<p class="mt-4 max-w-2xl text-white/80">
 				Preken, cursussen en materiaal van partnerkerken — vrij te gebruiken in je eigen gemeente.
 			</p>
@@ -24,9 +32,7 @@ const resources = [
 		<ul class="grid gap-8 md:grid-cols-3">
 			{resources.map((r) => (
 				<li class="overflow-hidden rounded-lg border border-slate-200">
-					<div class="flex h-40 items-center justify-center bg-slate-100 text-sm text-slate-400">
-						[afbeelding]
-					</div>
+					<Image src={r.image} alt={r.title} class="h-40 w-full object-cover" widths={[400, 800]} sizes="400px" />
 					<div class="p-6">
 						<span class="text-xs font-bold uppercase tracking-wide text-[#E8A33D]">
 							{r.category} &middot; {r.meta}
