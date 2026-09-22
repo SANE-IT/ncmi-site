@@ -6,14 +6,13 @@ interface Props {
 	description?: string;
 }
 
-const { title, description = 'Alive NCMI — samen kerken planten en leiders toerusten.' } = Astro.props;
+const { title, description = 'NCMI Nederland — trans-lokaal team dat kerken plant en leiders toerust.' } = Astro.props;
 
 const navItems = [
-	{ href: '/', label: 'Home' },
-	{ href: '/over-ons', label: 'Over ons' },
-	{ href: '/resources', label: 'Resources' },
+	{ href: '/over-ons', label: 'Kerken' },
 	{ href: '/agenda', label: 'Agenda' },
-	{ href: '/contact', label: 'Contact' },
+	{ href: '/resources', label: 'Resources' },
+	{ href: '/over-ons', label: 'Over' },
 ];
 ---
 
@@ -24,16 +23,31 @@ const navItems = [
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
-		<title>{title} · Alive NCMI</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+		<title>{title} · NCMI Nederland</title>
 	</head>
 	<body class="bg-white text-slate-900">
 		<header class="bg-[#10243D] text-white">
 			<div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-				<a href="/" class="text-lg font-semibold tracking-wide">Alive <span class="text-[#E8A33D]">NCMI</span></a>
-				<nav class="hidden gap-6 text-sm font-medium md:flex">
+				<a href="/" class="flex items-baseline gap-2">
+					<span class="text-2xl font-black tracking-tight">NCMI</span>
+					<span class="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">Nederland</span>
+				</a>
+				<nav class="hidden items-center gap-8 text-sm font-bold uppercase tracking-wide md:flex">
 					{navItems.map((item) => (
 						<a href={item.href} class="hover:text-[#E8A33D] transition-colors">{item.label}</a>
 					))}
+					<a
+						href="/contact"
+						class="rounded border border-white/40 px-4 py-2 text-xs hover:border-[#E8A33D] hover:text-[#E8A33D] transition-colors"
+					>
+						Connect
+					</a>
 				</nav>
 			</div>
 		</header>
@@ -42,9 +56,9 @@ const navItems = [
 			<slot />
 		</main>
 
-		<footer class="bg-[#10243D] text-white/80">
+		<footer class="bg-[#10243D] text-white/60">
 			<div class="mx-auto max-w-6xl px-6 py-10 text-sm">
-				<p>&copy; {new Date().getFullYear()} Alive NCMI. Alle rechten voorbehouden.</p>
+				<p>&copy; {new Date().getFullYear()} NCMI Nederland. Alle rechten voorbehouden.</p>
 			</div>
 		</footer>
 	</body>
